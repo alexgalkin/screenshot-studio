@@ -1,5 +1,7 @@
 ## Proposed Plan for FRONTEND-ONLY: Static browser-only Screenshot Studio
 
+Status: implemented. This file records the plan and the system it replaced. The current architecture is in [ARCHITECTURE.md](../../ARCHITECTURE.md).
+
 ## Context {toggle="true"}
 	Screenshot Studio is a Next.js App Router app. The editor, image tools, video export, and background removal already run in the browser, but the production build still starts Prisma, ships Route Handlers, and calls third parties at runtime (Microlink, Cloudflare R2, PostHog, AdSense, unpkg, Hugging Face, Google Fonts, the Twitter syndication API, YouTube, the GitHub REST API).
 	The end state is a static export. `npm run build` writes an `out/` directory of HTML, CSS, JS, WASM, fonts, images, and model weights. Any static file server can host that directory. After the files are served, the browser must not call a database, a Route Handler, or any third-party origin. Build-time `npm ci` may download npm packages. The running site may not.

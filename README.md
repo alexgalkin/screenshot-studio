@@ -28,9 +28,11 @@ npm ci
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). `npm run build` writes a static site to `out/` (`output: 'export'`). Serve that folder with any static file server. There is no database, no API, and no `.env`.
+Open [localhost:3000](http://localhost:3000). `npm run build` writes a static site to `out/` (`output: 'export'`). `npm start` serves that folder on port 3000. Any other static file server can host it too. There is no database, no API, and no `.env`.
 
-Stock images and the background-removal model live in `vendor/` and are copied into `public/` by `scripts/vendor-static-assets.ts` before dev and build. The ONNX weights are stored as `*.onnx.part-*` files so they stay under GitHub's file size limit. The script joins those parts and does not download them.
+Stock images, fonts, FFmpeg, and the background-removal model live in `vendor/` or `node_modules` and are copied into `public/` by `scripts/vendor-static-assets.ts` before dev and build. The ONNX weights are stored as `*.onnx.part-*` files so they stay under GitHub's file size limit. The script joins those parts and does not download them.
+
+Hosts that honor `public/_headers` send the cross-origin isolation headers the multi-thread FFmpeg and ONNX builds need. Other servers use the single-thread builds. `public/_redirects` maps removed URLs such as `/docs` and `/tweet`. See [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ## Contribute
 
