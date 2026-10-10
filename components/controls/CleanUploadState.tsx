@@ -2,25 +2,15 @@
 
 import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
-import {
-  Camera01Icon,
-  CommandIcon,
-  Globe02Icon,
-  Loading03Icon,
-} from 'hugeicons-react';
-import { Moon, Sun } from 'lucide-react';
+import { CommandIcon } from 'hugeicons-react';
 import { ALLOWED_IMAGE_TYPES, MAX_IMAGE_SIZE } from '@/lib/constants';
 import { useEditorStore, useImageStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { SegmentedControl } from '@/components/ui/segmented-control';
 import { getBackgroundCSS } from '@/lib/constants/backgrounds';
 import { useBackgroundImageReady } from '@/hooks/useBackgroundImageReady';
 
 const TRANSITION_DURATION = 400; // ms
-type ColorScheme = 'light' | 'dark';
-
 function extractImageUrl(style: React.CSSProperties): string | null {
   const bg = style.backgroundImage;
   if (!bg || typeof bg !== 'string') return null;
@@ -41,12 +31,9 @@ function preloadImage(url: string): Promise<string> {
 export function CleanUploadState() {
   const [isDragActive, setIsDragActive] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
-  const [screenshotUrl, setScreenshotUrl] = React.useState('');
-  const [colorScheme, setColorScheme] = React.useState<ColorScheme>('light');
-  const [isCapturing, setIsCapturing] = React.useState(false);
 
   const { setScreenshot } = useEditorStore();
-  const { addImages, setImage, backgroundConfig, addTextOverlay } = useImageStore();
+  const { addImages, backgroundConfig, addTextOverlay } = useImageStore();
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   // Crossfade state
@@ -188,47 +175,6 @@ export function CleanUploadState() {
     }
   }, []);
 
-  const handleCaptureScreenshot = async () => {
-    if (!screenshotUrl.trim()) {
-      setError('Please enter a URL');
-      return;
-    }
-    let finalUrl = screenshotUrl.trim();
-    if (!finalUrl.match(/^https?:\/\//i)) {
-      finalUrl = `https://${finalUrl}`;
-    }
-    setIsCapturing(true);
-    setError(null);
-    try {
-      const response = await fetch('/api/screenshot', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: finalUrl, deviceType: 'desktop', colorScheme }),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Failed to capture screenshot');
-      let base64Data = data.screenshot.trim();
-      if (base64Data.includes(',')) base64Data = base64Data.split(',')[1];
-      base64Data = base64Data.replace(/\s/g, '');
-      const byteCharacters = atob(base64Data);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: 'image/png' });
-      const blobUrl = URL.createObjectURL(blob);
-      const file = new File([blob], `screenshot-${colorScheme}.png`, { type: 'image/png' });
-      setScreenshot({ src: blobUrl });
-      setImage(file);
-      setScreenshotUrl('');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to capture screenshot');
-    } finally {
-      setIsCapturing(false);
-    }
-  };
-
   const active = isDragActive || dropzoneActive;
 
   return (
@@ -327,50 +273,6 @@ export function CleanUploadState() {
               Start with text
             </Button>
             <p className="text-xs text-foreground/60">No image needed. Edit in Design → Add Text.</p>
-
-            <div className="flex items-center gap-2 w-full">
-              <div className="flex flex-1 min-w-0 items-center gap-0 h-10 rounded-xl bg-background/35 border border-foreground/15 backdrop-blur-md focus-within:border-foreground/30 focus-within:ring-1 focus-within:ring-foreground/20 transition-[border-color,box-shadow]">
-                <Globe02Icon size={14} className="shrink-0 ml-3 text-foreground/45" />
-                <Input
-                  type="url"
-                  placeholder="Enter website URL..."
-                  value={screenshotUrl}
-                  onChange={(e) => setScreenshotUrl(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleCaptureScreenshot()}
-                  disabled={isCapturing}
-                  className="h-full flex-1 min-w-0 border-0 bg-transparent px-2 text-xs text-foreground/90 placeholder:text-foreground/35 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-transparent"
-                />
-                <div className="h-4 w-px shrink-0 bg-foreground/15" />
-                <SegmentedControl
-                  size="sm"
-                  value={colorScheme}
-                  onChange={(value) => setColorScheme(value as ColorScheme)}
-                  className={cn(
-                    'mx-1 shrink-0 h-7 w-[58px] border-0 bg-transparent p-0.5',
-                    isCapturing && 'pointer-events-none opacity-60'
-                  )}
-                  indicatorClassName="bg-foreground/20 shadow-none"
-                  options={[
-                    { id: 'light', icon: <Sun className="h-3 w-3" />, ariaLabel: 'Light' },
-                    { id: 'dark', icon: <Moon className="h-3 w-3" />, ariaLabel: 'Dark' },
-                  ]}
-                />
-              </div>
-
-              <Button
-                onClick={handleCaptureScreenshot}
-                disabled={isCapturing}
-                variant="outline"
-                size="icon"
-                className="size-10 shrink-0 rounded-xl border-foreground/15 bg-background/35 text-foreground/80 backdrop-blur-md hover:bg-background/45 hover:text-foreground hover:border-foreground/25"
-              >
-                {isCapturing ? (
-                  <Loading03Icon size={16} className="animate-spin" />
-                ) : (
-                  <Camera01Icon size={16} />
-                )}
-              </Button>
-            </div>
           </div>
         )}
 

@@ -128,21 +128,14 @@ export default function TermsPage() {
               className="mb-3 text-xl font-semibold tracking-[-0.02em] text-foreground"
               style={{ fontFamily: INTER }}
             >
-              5. Advertising and Third-Party Services
+              5. Third-Party Links
             </h2>
-            <p className="mb-3 leading-relaxed text-muted-foreground">
-              The Service is free to use and is supported by ads served by
-              Google AdSense. Ads are provided by third parties, and we are not
-              responsible for the products or services they promote. You agree
-              not to click ads artificially, use automated tools to generate ad
-              impressions or clicks, or encourage others to do so.
-            </p>
             <p className="leading-relaxed text-muted-foreground">
-              Some features rely on third-party services, such as Microlink for
-              URL screenshots and X for tweet imports, and guides link to
-              external websites. Those services and sites are governed by their
-              own terms and privacy policies. How ads, analytics, and cookies
-              work on this site is explained in our{" "}
+              The Service does not show ads and does not send your images to a
+              third party to edit or export them. Guides and footer links may
+              point at other websites. Those sites are governed by their own
+              terms and privacy policies. How the editor handles your files is
+              explained in our{" "}
               <Link href="/privacy-policy" className={linkClassName}>
                 privacy policy
               </Link>

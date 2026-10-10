@@ -25,11 +25,12 @@ Requires Node.js 20.9+ and npm.
 git clone https://github.com/opennookorg/screenshot-studio.git
 cd screenshot-studio
 npm ci
-printf 'DATABASE_URL="postgresql://localhost:5432/screenshot_studio"\n' > .env
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). The browser editor needs no running database; `DATABASE_URL` is required by Prisma during startup and builds. Server-side screenshot caching requires PostgreSQL and R2 credentials; see the [cache configuration](./lib/screenshot-cache.ts).
+Open [localhost:3000](http://localhost:3000). `npm run build` writes a static site to `out/` (`output: 'export'`). Serve that folder with any static file server. There is no database, no API, and no `.env`.
+
+Stock images and the background-removal model live in `vendor/` and are copied into `public/` by `scripts/vendor-static-assets.ts` before dev and build. The ONNX weights are stored as `*.onnx.part-*` files so they stay under GitHub's file size limit. The script joins those parts and does not download them.
 
 ## Contribute
 

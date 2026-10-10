@@ -40,7 +40,7 @@ export function ProductOverview(): React.JSX.Element {
                 you can publish. No signup, no watermarks, nothing to install.
               </p>
               <p>
-                Drop in a screenshot, tweet, or code snippet. Add a Safari or
+                Drop in a screenshot or code snippet. Add a Safari or
                 Chrome frame, a gradient background, 3D perspective, and
                 animation. Export PNG, JPG, or video for social, docs, and decks.
               </p>

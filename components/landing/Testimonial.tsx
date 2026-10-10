@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Instrument_Serif } from "next/font/google";
 import { StarIcon } from "hugeicons-react";
-
-const instrumentSerif = Instrument_Serif({
-  weight: ["400"],
-  subsets: ["latin"],
-});
 
 interface TestimonialProps {
   quote?: string;
@@ -84,7 +78,7 @@ export function Testimonial({
 
             {/* Quote Text */}
             <blockquote
-              className={`text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-normal leading-[1.15] tracking-tight text-foreground mb-10 ${instrumentSerif.className}`}
+              className={`text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-normal leading-[1.15] tracking-tight text-foreground mb-10 font-instrument-serif`}
             >
               {quote}
             </blockquote>

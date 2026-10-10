@@ -1,0 +1,9 @@
+/features/background-remover /remove-background/ 301
+/home /editor/ 301
+/free-screenshot-editor-online /free-screenshot-editor/ 301
+/free-screenshot-studio/* /free-screenshot-editor/ 301
+/blog/* /guides/:splat 301
+/docs / 301
+/docs/authentication / 301
+/developers / 301
+/tweet / 301

@@ -68,9 +68,9 @@ const features = [
     ),
   },
   {
-    title: "Tweet & Code Snippets",
+    title: "Code Snippets",
     description:
-      `Import tweets by URL. Generate beautiful code snippet images with ${PRODUCT_FACTS.codeThemes} themes.`,
+      `Generate code snippet images with ${PRODUCT_FACTS.codeThemes} themes.`,
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M7 7l-4 3 4 3" />

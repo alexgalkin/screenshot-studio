@@ -71,8 +71,11 @@ function send(message: WorkerResponse) {
 
 function loadLibrary(): Promise<Transformers> {
   library ??= import("@huggingface/transformers").then((module) => {
-    module.env.allowLocalModels = false;
-    module.env.allowRemoteModels = true;
+    module.env.allowLocalModels = true;
+    module.env.allowRemoteModels = false;
+    module.env.localModelPath = "/models/";
+    const wasmBackend = module.env.backends.onnx.wasm;
+    if (wasmBackend) wasmBackend.wasmPaths = "/onnx/";
     return module;
   });
   return library;

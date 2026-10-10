@@ -38,13 +38,12 @@ export const AGENT_PAGES: AgentPage[] = [
     path: "/editor",
     title: "Screenshot Studio - Free Screenshot Editor & Mockup Maker",
     summary:
-      "The Screenshot Studio editor. Drop in a screenshot and add gradient backgrounds, browser mockups, shadows, 3D perspective, and animation, then export a PNG, JPEG, WebP, MP4, WebM, or GIF. Editing runs client side, so imported images are not uploaded to edit them; only export compression sends the finished image to the server, which returns it without storing it. No signup, no watermark, no paid tier.",
+      "The Screenshot Studio editor. Drop in a screenshot and add gradient backgrounds, browser mockups, shadows, 3D perspective, and animation, then export a PNG, JPEG, WebP, MP4, WebM, or GIF. Editing and export run in the browser. Nothing is uploaded. No signup, no watermark, no paid tier.",
     points: [
       `${atLeast(PRODUCT_FACTS.backgrounds)} gradient, mesh, and solid backgrounds`,
       "Safari, Chrome, and Arc browser mockups in light and dark",
       "3D perspective transforms and fully configurable shadows",
       `${PRODUCT_FACTS.animationPresets} animation presets with a keyframe timeline and video export`,
-      "Import a tweet by URL and render it as an image",
       `Export up to ${PRODUCT_FACTS.maxExportScale}x resolution`,
     ],
   },
@@ -74,22 +73,10 @@ export const AGENT_PAGES: AgentPage[] = [
     ],
   },
   {
-    path: "/tweet",
-    title: "Tweet to Image: Turn Posts on X into Images - Screenshot Studio",
-    summary:
-      "A focused tweet to image editor. Paste a link to a public post on X, pick a light or dark card and a gradient or transparent background, then export a PNG or copy it to the clipboard. No signup, no watermark.",
-    points: [
-      "Loads any public post from an x.com or twitter.com link",
-      "Light and dark card styles with up to four photos",
-      "Gradient, image, and pattern backgrounds, or a transparent backdrop",
-      "2x and 4x PNG export, plus copy image to clipboard",
-    ],
-  },
-  {
     path: "/remove-background",
     title: "Remove Background from Image: Free - Screenshot Studio",
     summary:
-      "A standalone background remover. Drop in a PNG, JPG, WebP, or AVIF image and download a transparent PNG at the original resolution. The BiRefNet-lite model runs on the device with WebGPU, falling back to WebAssembly; the weights download once from Hugging Face and are cached, and the image itself is never uploaded. No signup, no watermark.",
+      "A standalone background remover. Drop in a PNG, JPG, WebP, or AVIF image and download a transparent PNG at the original resolution. The BiRefNet-lite model runs on the device with WebGPU, falling back to WebAssembly. The weights ship with the site, and the image itself is never uploaded. No signup, no watermark.",
     points: [
       "On-device AI background removal, no image upload",
       "WebGPU acceleration with an automatic WebAssembly fallback",
@@ -102,7 +89,7 @@ export const AGENT_PAGES: AgentPage[] = [
     path: "/compress-video",
     title: "Compress Video Online: Free, No Upload - Screenshot Studio",
     summary:
-      "A standalone video compressor. Drop in an MP4, MOV, WebM, or MKV file up to 1 GB, choose a quality level or a target size in MB, and download an MP4 with H.264 video and AAC audio. FFmpeg compiled to WebAssembly does the work inside the browser tab; the engine downloads once from a public CDN and is cached, and the video itself is not uploaded. No signup, no watermark.",
+      "A standalone video compressor. Drop in an MP4, MOV, WebM, or MKV file up to 1 GB, choose a quality level or a target size in MB, and download an MP4 with H.264 video and AAC audio. FFmpeg compiled to WebAssembly does the work inside the browser tab. The engine ships with the site, and the video itself is not uploaded. No signup, no watermark.",
     points: [
       "Four quality levels, from visually identical to smallest file",
       "Target size mode that works out the bitrate to fit a limit such as 10 or 25 MB",
@@ -183,44 +170,6 @@ export const AGENT_PAGES: AgentPage[] = [
     title: "Screenshot Studio for Designers",
     summary:
       "Present work with mockups, framing, and animation without leaving the browser.",
-  },
-  {
-    path: "/docs",
-    title: "Screenshot Studio API Documentation",
-    summary:
-      "Public HTTP API reference: endpoints, request and response schemas, rate limits, and error codes. The machine-readable contract is published at /openapi.json.",
-    points: [
-      "POST /api/screenshot - capture a live URL as a base64 PNG",
-      "POST /api/export - recompress an image as PNG, JPEG, or WebP",
-      "GET /api/tweet/{id} - fetch tweet JSON for tweet-to-image rendering",
-      "GET /api/image-proxy - same-origin proxy for Twitter media",
-      "OpenAPI 3.1 spec: /openapi.json",
-    ],
-  },
-  {
-    path: "/docs/authentication",
-    title: "Screenshot Studio API Authentication",
-    summary:
-      "The public Screenshot Studio API needs no API key, token, or account. Requests are anonymous and shaped by per-IP rate limits instead of credentials.",
-    points: [
-      "No API key or Authorization header is required",
-      "POST /api/screenshot is limited to 20 requests per minute per IP",
-      "Rate-limited responses return HTTP 429 with Retry-After and X-RateLimit-* headers",
-      "Only maintenance endpoints are credentialed, and they are not part of the public surface",
-    ],
-  },
-  {
-    path: "/developers",
-    title: "Screenshot Studio Developer Portal",
-    summary:
-      "Developer entry point: API docs, OpenAPI spec, authentication and rate limits, quickstart requests, agent files, and the open-source repository.",
-    points: [
-      "API docs: /docs",
-      "OpenAPI 3.1 spec: /openapi.json",
-      "Authentication and rate limits: /docs/authentication",
-      "Agent overview: /llms.txt and /llms-full.txt",
-      "Source: https://github.com/opennookorg/screenshot-studio",
-    ],
   },
   {
     path: "/changelog",
@@ -332,13 +281,9 @@ for (const tool of TOOLS) {
 }
 
 export const AGENT_RESOURCES = [
-  { name: "API documentation", url: `${BASE_URL}/docs` },
-  { name: "Developer portal", url: `${BASE_URL}/developers` },
+  { name: "Editor", url: `${BASE_URL}/editor` },
+  { name: "For developers", url: `${BASE_URL}/for/developers` },
   { name: "OpenAPI specification", url: `${BASE_URL}/openapi.json` },
-  {
-    name: "Authentication and rate limits",
-    url: `${BASE_URL}/docs/authentication`,
-  },
   { name: "llms.txt", url: `${BASE_URL}/llms.txt` },
   { name: "llms-full.txt", url: `${BASE_URL}/llms-full.txt` },
   { name: "Sitemap", url: `${BASE_URL}/sitemap.xml` },

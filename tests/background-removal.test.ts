@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   MAX_FILE_BYTES,
+  MODEL_BASE_URL,
   assessMask,
   checkFile,
   cutoutFileName,
@@ -9,6 +10,11 @@ import {
   maskToAlpha,
   sharpenAlpha,
 } from "../lib/background-removal/mask";
+
+test("model weights are served from the static site", () => {
+  assert.equal(MODEL_BASE_URL.startsWith("/models/"), true);
+  assert.equal(MODEL_BASE_URL.includes("huggingface.co"), false);
+});
 
 test("checkFile accepts PNG, JPG, WebP, and AVIF up to 50 MB", () => {
   assert.equal(checkFile({ type: "image/png", size: 1024 }), null);

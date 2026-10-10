@@ -2,13 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Instrument_Serif } from "next/font/google";
 import { Globe02Icon, NewTwitterIcon, GithubIcon } from "hugeicons-react";
-
-const instrumentSerif = Instrument_Serif({
-  weight: ["400"],
-  subsets: ["latin"],
-});
 
 export interface Sponsor {
   name: string;
@@ -188,7 +182,7 @@ export function Sponsors({
   return (
     <section className="w-full py-12 sm:py-16 px-4 sm:px-6 border-t border-border bg-muted/30">
       <div className="container mx-auto max-w-6xl">
-        <h2 className={`text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 px-2 ${instrumentSerif.className}`}>
+        <h2 className={`text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 px-2 font-instrument-serif`}>
           {title}
         </h2>
         {hasSponsors ? (

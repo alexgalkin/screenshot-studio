@@ -34,7 +34,7 @@ const MOTION_EVENTS: ListEvent[] = [
 ];
 
 const CAPTURE_EVENTS: ListEvent[] = [
-  { title: "Tweet imported", meta: "x.com/…", icon: "tweet" },
+  { title: "Code pasted", meta: "tsx", icon: "code" },
   { title: "Code themed", meta: "Dracula", icon: "code" },
   { title: "Snippet ready", meta: "tsx", icon: "check" },
 ];

@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo/metadata";
+
+export const dynamic = "force-static";
 import { LAST_UPDATED_ISO } from "@/lib/seo/changelog";
 import { CLAIMS_CHECKED, getAllComparisonSlugs } from "@/lib/seo/comparisons";
 import { getGuide, guideUpdated, guides } from "@/lib/seo/guides";
@@ -11,7 +13,6 @@ const STATIC_PATHS = [
   "/free-screenshot-editor",
   "/store-screenshots",
   "/code",
-  "/tweet",
   "/mockup-generator",
   "/remove-background",
   "/compress-video",
@@ -33,10 +34,6 @@ const STATIC_PATHS = [
   "/compare",
   "/guides",
   "/changelog",
-
-  "/docs",
-  "/docs/authentication",
-  "/developers",
 
   "/about",
   "/contact",

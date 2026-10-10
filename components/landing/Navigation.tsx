@@ -21,7 +21,6 @@ import {
   EraserIcon,
   Layers01Icon,
   Menu01Icon,
-  NewTwitterIcon,
   PaintBoardIcon,
   SourceCodeIcon,
   Video01Icon,
@@ -54,12 +53,6 @@ const resourceGroups = [
         description: "Polished images of code snippets",
         href: "/code",
         icon: SourceCodeIcon,
-      },
-      {
-        label: "Tweet Images",
-        description: "Clean cards from any X post",
-        href: "/tweet",
-        icon: NewTwitterIcon,
       },
       {
         label: "Remove Background",

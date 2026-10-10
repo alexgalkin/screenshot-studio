@@ -18,7 +18,6 @@ export const metadata: Metadata = {
     "safari browser mockup generator",
     "chrome browser frame generator",
     "screenshot wrapper online",
-    "tweet to screenshot",
     "code snippet to image",
   ],
   openGraph: {
@@ -51,30 +50,15 @@ const howItWorks = [
   },
 ];
 
-// Video testimonials
-const videoTestimonials = [
-  {
-    videoId: "NAS4BEP2KtA",
-    startTime: 3562,
-    endTime: 3768,
-  },
-  {
-    videoId: "29S4pv64Tbg",
-    startTime: 222,
-  },
-];
-
 export default function LandingPageRoute() {
   return (
     <LandingPage
       heroTitle="Beautiful images. Zero effort."
       heroSubtitle="Screenshots, ready to ship."
-      heroDescription="The free browser editor that makes your screenshots, tweets, and code look professional. Browser mockups, 3D effects, and more."
+      heroDescription="The free browser editor that makes your screenshots and code look professional. Browser mockups, 3D effects, and more."
       ctaLabel="Get Started"
       ctaHref="/"
       howItWorks={howItWorks}
-      videoTestimonials={videoTestimonials}
-      videoTestimonialsTitle="Creators Love Screenshot Studio"
       brandName="Screenshot Studio"
     />
   );

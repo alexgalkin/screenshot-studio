@@ -61,8 +61,7 @@ export const FONTS = [
   { id: 'cousine', label: 'Cousine', css: "'Cousine', monospace" },
 ] as const;
 
-export const GOOGLE_FONTS_URL =
-  'https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Fira+Code&family=Source+Code+Pro&family=IBM+Plex+Mono&family=Space+Mono&family=Roboto+Mono&family=Ubuntu+Mono&family=Inconsolata&family=Anonymous+Pro&family=Cousine&display=swap';
+export const CODE_FONTS_STYLESHEET = '/fonts/code/code-fonts.css';
 
 export const PADDING_OPTIONS = [16, 32, 64, 128] as const;
 

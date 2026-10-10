@@ -117,11 +117,7 @@ export default function ContactPage() {
             <Link href="/features" className={linkClassName}>
               features
             </Link>{" "}
-            page, in the{" "}
-            <Link href="/docs" className={linkClassName}>
-              API docs
-            </Link>
-            , or in the{" "}
+            page or in the{" "}
             <Link href="/changelog" className={linkClassName}>
               changelog
             </Link>

@@ -1,7 +1,7 @@
 import { gradientColors, GradientKey } from './gradient-colors';
 import { SolidColorKey, solidColors } from './solid-colors';
 import { meshGradients, magicGradients, MeshGradientKey, MagicGradientKey } from './mesh-gradients';
-import { getR2ImageUrl, getResizedImageUrl } from '@/lib/r2';
+import { getR2ImageUrl } from '@/lib/r2';
 import { backgroundPaths } from '@/lib/r2-backgrounds';
 
 export type BackgroundType = 'gradient' | 'solid' | 'image';
@@ -68,7 +68,7 @@ export const getBackgroundImageUrl = (config: BackgroundConfig): string | null =
 
 export const getBackgroundCSS = (
   config: BackgroundConfig,
-  imageWidth?: number
+  _imageWidth?: number
 ): React.CSSProperties => {
   const { type, value, opacity = 1 } = config;
 
@@ -118,7 +118,7 @@ export const getBackgroundCSS = (
 
     case 'image': {
       const url = getBackgroundImageUrl(config) ?? (value as string);
-      const imageUrl = imageWidth ? getResizedImageUrl(url, imageWidth) : url;
+      const imageUrl = url;
 
       return {
         backgroundImage: `url(${imageUrl})`,

@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo/metadata";
 
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = SITE_URL;
 
@@ -10,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/", "/static/", "/svc/"],
+        disallow: ["/_next/", "/static/"],
       },
       // Major search engines — explicit allow
       {

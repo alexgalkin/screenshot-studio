@@ -7,13 +7,12 @@
  */
 
 /**
- * BiRefNet-lite exported to ONNX at 512x512 (MIT licence). The revision is
- * pinned so an upstream change can never alter output or invalidate every
- * visitor's cached download.
+ * BiRefNet-lite exported to ONNX at 512x512 (MIT licence). Weights ship with
+ * the static build under /models and are never fetched from a third party.
  */
 export const MODEL_ID = "studioludens/birefnet-lite-512";
 export const MODEL_REVISION = "4a3c40c36c94093cc1e724d9ea428b8fa4b57dc7";
-export const MODEL_BASE_URL = `https://huggingface.co/${MODEL_ID}/resolve/${MODEL_REVISION}`;
+export const MODEL_BASE_URL = `/models/${MODEL_ID}`;
 
 /** WebGPU runs the half-precision weights; WASM needs full precision. */
 export const MODEL_WEIGHTS = {

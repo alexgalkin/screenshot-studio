@@ -1,0 +1,62 @@
+@import "@fontsource-variable/geist/index.css";
+@import "@fontsource-variable/geist-mono/index.css";
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource/poppins/latin.css";
+@import "@fontsource-variable/space-grotesk/index.css";
+@import "@fontsource-variable/outfit/index.css";
+@import "@fontsource-variable/plus-jakarta-sans/index.css";
+@import "@fontsource-variable/dm-sans/index.css";
+@import "@fontsource-variable/sora/index.css";
+@import "@fontsource-variable/manrope/index.css";
+@import "@fontsource-variable/raleway/index.css";
+@import "@fontsource-variable/montserrat/index.css";
+@import "@fontsource-variable/lexend/index.css";
+@import "@fontsource-variable/work-sans/index.css";
+@import "@fontsource-variable/urbanist/index.css";
+@import "@fontsource-variable/albert-sans/index.css";
+@import "@fontsource-variable/oswald/index.css";
+@import "@fontsource/bebas-neue/latin.css";
+@import "@fontsource/righteous/latin.css";
+@import "@fontsource-variable/playfair-display/index.css";
+@import "@fontsource-variable/lora/index.css";
+@import "@fontsource-variable/libre-baskerville/index.css";
+@import "@fontsource-variable/caveat/index.css";
+@import "@fontsource/pacifico/latin.css";
+@import "@fontsource-variable/dancing-script/index.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+@import "@fontsource-variable/fira-code/index.css";
+@import "@fontsource/instrument-serif/latin.css";
+
+:root {
+  --font-geist-sans: "Geist Variable", sans-serif;
+  --font-geist-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --font-inter: "Inter Variable", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-space-grotesk: "Space Grotesk Variable", sans-serif;
+  --font-outfit: "Outfit Variable", sans-serif;
+  --font-plus-jakarta-sans: "Plus Jakarta Sans Variable", sans-serif;
+  --font-dm-sans: "DM Sans Variable", sans-serif;
+  --font-sora: "Sora Variable", sans-serif;
+  --font-manrope: "Manrope Variable", sans-serif;
+  --font-raleway: "Raleway Variable", sans-serif;
+  --font-montserrat: "Montserrat Variable", sans-serif;
+  --font-lexend: "Lexend Variable", sans-serif;
+  --font-work-sans: "Work Sans Variable", sans-serif;
+  --font-urbanist: "Urbanist Variable", sans-serif;
+  --font-albert-sans: "Albert Sans Variable", sans-serif;
+  --font-oswald: "Oswald Variable", sans-serif;
+  --font-bebas-neue: "Bebas Neue", sans-serif;
+  --font-righteous: "Righteous", sans-serif;
+  --font-playfair-display: "Playfair Display Variable", serif;
+  --font-lora: "Lora Variable", serif;
+  --font-libre-baskerville: "Libre Baskerville Variable", serif;
+  --font-caveat: "Caveat Variable", cursive;
+  --font-pacifico: "Pacifico", cursive;
+  --font-dancing-script: "Dancing Script Variable", cursive;
+  --font-jetbrains-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-fira-code: "Fira Code Variable", ui-monospace, monospace;
+}
+
+.font-instrument-serif {
+  font-family: "Instrument Serif", serif;
+}

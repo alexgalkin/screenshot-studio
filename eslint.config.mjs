@@ -61,7 +61,6 @@ export default defineConfig([
       'public/**',
       '.vercel/**',
       'coverage/**',
-      'prisma/migrations/**',
       'scripts/**',
       '*.tsbuildinfo',
       'next-env.d.ts',

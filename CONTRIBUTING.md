@@ -8,13 +8,13 @@ Small, focused pull requests are easiest to review. For larger changes, open an 
 2. Branch from the latest `main`: `git switch -c fix/short-description` or `feat/short-description`.
 3. Make the change, verify it, and open a pull request against `main`.
 
-Keep secrets in your local `.env`; never commit them. The placeholder database URL in the setup is enough for browser-only development. Use real service credentials only when testing those integrations.
+The app has no server secrets. Do not add a database URL or third-party API keys to make the editor run.
 
 ## Where to look
 
 | Area | Location |
 |---|---|
-| Pages and API routes | `app/` — editor at `/editor`, tools at `/tools` |
+| Pages | `app/` — editor at `/editor`, tools at `/tools` |
 | Editor controls and canvas | `components/editor/`, `components/canvas/` |
 | State, presets, and export | `lib/store/`, `lib/constants/`, `lib/export/` |
 | Draft persistence and hooks | `lib/draft-storage.ts`, `hooks/` |
@@ -37,7 +37,7 @@ npx tsc --noEmit
 npm run build
 ```
 
-Run these from the repository root with `.env` configured. Check visual changes in a browser and verify exported output, not only the preview. Existing lint warnings should not grow.
+Run these from the repository root. `npm run build` does not need environment variables. Check visual changes in a browser and verify exported output, not only the preview. Existing lint warnings should not grow.
 
 ## Open a pull request
 

@@ -4,8 +4,7 @@ import { GoBackButton } from "@/components/landing/GoBackButton";
 
 const RECOVERY_LINKS = [
   { href: "/features", label: "Features" },
-  { href: "/docs", label: "API docs" },
-  { href: "/developers", label: "Developers" },
+  { href: "/for/developers", label: "For developers" },
   { href: "/sitemap.xml", label: "Sitemap" },
   { href: "/llms.txt", label: "llms.txt" },
 ];

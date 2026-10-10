@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     "browser frame screenshot",
     "screenshot wrapper tool",
     "add background to screenshot free",
-    "tweet to screenshot",
     "code snippet screenshot",
     "code to image generator",
     "mockup screenshot",

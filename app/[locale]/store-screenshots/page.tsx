@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import Link from "next/link";
 import { StoreScreenshotWorkspace } from "@/components/store-screenshots/StoreScreenshotWorkspace";
 import {
@@ -16,7 +15,6 @@ import {
   STORE_TEMPLATES,
 } from "@/lib/store-screenshots/config";
 import { OG_DEFAULTS } from "@/lib/seo/metadata";
-import { STORE_PROJECT_HINT_COOKIE } from "@/lib/store-screenshots/storage";
 
 const IPHONE_PROFILE = STORE_OUTPUT_PROFILES[0];
 
@@ -71,13 +69,10 @@ const faqs = [
   },
 ];
 
-export default async function StoreScreenshotsPage(): Promise<React.JSX.Element> {
-  const cookieStore = await cookies();
-  const hasSavedProject = cookieStore.get(STORE_PROJECT_HINT_COOKIE)?.value === "1";
-
+export default function StoreScreenshotsPage(): React.JSX.Element {
   return (
     <>
-      <StoreScreenshotWorkspace initialHasSavedProject={hasSavedProject} />
+      <StoreScreenshotWorkspace />
 
       <section className="mx-auto w-full max-w-3xl px-5 py-16 sm:px-8">
         <h1 className="text-2xl font-semibold tracking-[-0.02em] text-foreground sm:text-3xl">

@@ -59,9 +59,9 @@ const defaultFAQs: FAQItem[] = [
       `Yes. The timeline editor ships ${PRODUCT_FACTS.animationPresets} animation presets covering zoom, pan, rotate, and 3D perspective moves. Add keyframes, preview in real time, and export as ${VIDEO_FORMATS_SENTENCE}.`,
   },
   {
-    question: "Can I create tweet screenshots or code snippet images?",
+    question: "Can I create code snippet images?",
     answer:
-      `Yes. Paste a tweet URL to capture it as a high-resolution image in light or dark theme. The code snippet generator supports ${PRODUCT_FACTS.codeThemes} syntax themes, ${PRODUCT_FACTS.codeLanguages} programming languages, and ${PRODUCT_FACTS.codeFonts} monospace fonts.`,
+      `Yes. The code snippet generator supports ${PRODUCT_FACTS.codeThemes} syntax themes, ${PRODUCT_FACTS.codeLanguages} programming languages, and ${PRODUCT_FACTS.codeFonts} monospace fonts. It runs in the browser.`,
   },
   {
     question: "What makes Screenshot Studio different from other screenshot editors?",
@@ -71,7 +71,7 @@ const defaultFAQs: FAQItem[] = [
   {
     question: "Is my data stored on your servers?",
     answer:
-      "No. Editing runs in your browser and imported images are not uploaded to edit them. Only export compression sends the finished image to the server, which recompresses it in memory and returns it without storing it.",
+      "No. Editing, export, video encoding, and background removal run in your browser. Imported images are not uploaded.",
   },
 ];
 

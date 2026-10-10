@@ -28,7 +28,6 @@ const STORE: GuideLink = {
   href: "/store-screenshots",
   label: "App Store screenshot generator",
 };
-const TWEET: GuideLink = { href: "/tweet", label: "Tweet to image" };
 const CROP: GuideLink = { href: "/crop-image", label: "Crop image" };
 const RESIZE: GuideLink = { href: "/resize-image", label: "Resize image" };
 const COMPRESS: GuideLink = { href: "/compress-image", label: "Compress image" };
@@ -971,74 +970,5 @@ export const howToGuides: HowToGuide[] = [
       PRIVACY_FAQ,
     ],
     related: [FREE_EDITOR, CROP, COMPRESS],
-  },
-  {
-    kind: "how-to",
-    topic: "publish",
-    slug: "how-to-screenshot-a-tweet",
-    title: "How to Screenshot a Tweet (X Post) Cleanly for Free",
-    metaDescription:
-      "Turn any X (Twitter) post into a clean image: paste the link, choose a light or dark card, add a background and padding, and download a sharp PNG. Free, no login.",
-    keywords: [
-      "tweet screenshot",
-      "screenshot a tweet",
-      "tweet to image",
-      "x post screenshot",
-      "twitter screenshot generator",
-    ],
-    answer:
-      "Instead of cropping a screenshot of your feed, paste the post's link into Screenshot Studio's Tweet to image tool. It renders a clean card in light or dark, lets you add a background and padding, and downloads a sharp PNG. It is free and needs no X login.",
-    cta: { href: "/tweet", label: "Open Tweet to image" },
-    steps: [
-      {
-        title: "Copy the post link",
-        body: "On X, open the post's share menu and choose Copy link, or copy the URL from your browser's address bar.",
-      },
-      {
-        title: "Paste it into Tweet to image",
-        body: "Go to screenshot-studio.com/tweet and paste the link. The post appears as a clean card with no feed, replies, or buttons around it.",
-      },
-      {
-        title: "Style the card",
-        body: "Choose a light or dark card, pick a background, and set the padding around it.",
-      },
-      {
-        title: "Download",
-        body: "Download the PNG, or use Share to send it through your device's share sheet.",
-      },
-    ],
-    sections: [
-      {
-        heading: "Why not just take a screenshot?",
-        paragraphs: [
-          "A regular screenshot of X includes whatever is around the post: other tweets, trending topics, your own profile, and notification counts. It is also limited to your screen's resolution. Rendering the post as a card gives a sharp, consistent image that looks the same no matter who makes it.",
-        ],
-      },
-      {
-        heading: "Good uses for tweet images",
-        paragraphs: [],
-        bullets: [
-          "Testimonials and social proof on a landing page.",
-          "Quotes in newsletters, slides, and blog posts.",
-          "Reposting on Instagram or LinkedIn, where X links do not preview well.",
-        ],
-      },
-    ],
-    faqs: [
-      {
-        q: "Do I need to log in to X?",
-        a: "No. Paste a link to a public post and the tool builds the image. There is no X login and no Screenshot Studio account.",
-      },
-      {
-        q: "Can I make a dark mode tweet image?",
-        a: "Yes. Switch the card to dark before downloading.",
-      },
-      {
-        q: "Does it work with private accounts?",
-        a: "No. Only public posts can be turned into images.",
-      },
-      NO_WATERMARK_FAQ,
-    ],
-    related: [TWEET, SOCIAL, BEAUTIFIER],
-  },
+  }
 ];

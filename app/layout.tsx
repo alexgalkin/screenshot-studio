@@ -1,265 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { SITE_URL } from "@/lib/seo/metadata";
-import Script from "next/script";
-import {
-  Geist,
-  Geist_Mono,
-  Caveat,
-  Inter,
-  Poppins,
-  Space_Grotesk,
-  Outfit,
-  Plus_Jakarta_Sans,
-  DM_Sans,
-  Playfair_Display,
-  Lora,
-  Libre_Baskerville,
-  Bebas_Neue,
-  Righteous,
-  Pacifico,
-  Dancing_Script,
-  JetBrains_Mono,
-  Fira_Code,
-  Sora,
-  Manrope,
-  Raleway,
-  Oswald,
-  Montserrat,
-  Lexend,
-  Work_Sans,
-  Urbanist,
-  Albert_Sans,
-} from "next/font/google";
 import "./globals.css";
+import "./local-fonts.css";
 import { Toaster } from "@/components/ui/sonner";
 import { QueryProvider } from "@/lib/query-client";
 import { GlobalDropZone } from "@/components/GlobalDropZone";
 import { PathTracker } from "@/components/landing/GoBackButton";
-import { AdFreeRouteLinks } from "@/components/AdFreeRouteLinks";
 import { getRootJsonLd } from "@/lib/seo/json-ld";
-import { ADSENSE_CLIENT } from "@/components/AdSenseScript";
 import { PRODUCT_FACTS, atLeast } from "@/lib/seo/product-facts";
-
-// System UI fonts
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-// Modern Sans-serif fonts
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta-sans",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-});
-
-const raleway = Raleway({
-  variable: "--font-raleway",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const lexend = Lexend({
-  variable: "--font-lexend",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const workSans = Work_Sans({
-  variable: "--font-work-sans",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const urbanist = Urbanist({
-  variable: "--font-urbanist",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const albertSans = Albert_Sans({
-  variable: "--font-albert-sans",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-// Display/Condensed fonts
-const oswald = Oswald({
-  variable: "--font-oswald",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["200", "300", "400", "500", "600", "700"],
-});
-
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas-neue",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["400"],
-});
-
-const righteous = Righteous({
-  variable: "--font-righteous",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["400"],
-});
-
-// Serif fonts
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair-display",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-const lora = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["400", "500", "600", "700"],
-});
-
-const libreBaskerville = Libre_Baskerville({
-  variable: "--font-libre-baskerville",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["400", "700"],
-});
-
-// Handwriting/Script fonts
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  preload: false,
-});
-
-const pacifico = Pacifico({
-  variable: "--font-pacifico",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["400"],
-});
-
-const dancingScript = Dancing_Script({
-  variable: "--font-dancing-script",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["400", "500", "600", "700"],
-});
-
-// Monospace fonts
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-});
-
-const firaCode = Fira_Code({
-  variable: "--font-fira-code",
-  subsets: ["latin"],
-  preload: false,
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-// Combine all font variables
-const fontVariables = [
-  geistSans.variable,
-  geistMono.variable,
-  inter.variable,
-  poppins.variable,
-  spaceGrotesk.variable,
-  outfit.variable,
-  plusJakartaSans.variable,
-  dmSans.variable,
-  sora.variable,
-  manrope.variable,
-  raleway.variable,
-  montserrat.variable,
-  lexend.variable,
-  workSans.variable,
-  urbanist.variable,
-  albertSans.variable,
-  oswald.variable,
-  bebasNeue.variable,
-  righteous.variable,
-  playfairDisplay.variable,
-  lora.variable,
-  libreBaskerville.variable,
-  caveat.variable,
-  pacifico.variable,
-  dancingScript.variable,
-  jetbrainsMono.variable,
-  firaCode.variable,
-].join(" ");
 
 export const metadata: Metadata = {
   title: {
@@ -416,9 +164,6 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   category: "Design Tools",
-  other: {
-    "google-adsense-account": ADSENSE_CLIENT,
-  },
 };
 
 export const viewport: Viewport = {
@@ -450,27 +195,14 @@ export default async function RootLayout({
         href="/llms-full.txt"
         title="LLMs Full Documentation"
       />
-      <body className={`${fontVariables} antialiased`}>
+      <body className={`antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(rootJsonLd) }}
         />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-WWTQR26VH4"
-          strategy="lazyOnload"
-        />
-        <Script id="ga4" strategy="lazyOnload">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-WWTQR26VH4');`}
-        </Script>
-        <Script src="https://clicks.page/t.js" data-site="682g4e3l336g" />
         <QueryProvider>
           <GlobalDropZone>
             <PathTracker />
-            <AdFreeRouteLinks />
             {children}
           </GlobalDropZone>
           <Toaster />

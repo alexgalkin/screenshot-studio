@@ -192,14 +192,12 @@ export default function AboutPage() {
               How the Site Is Funded
             </h2>
             <p className="leading-relaxed text-muted-foreground">
-              There is no paid plan, no watermark, and no account. The site is
-              supported by ads from Google AdSense shown on content pages. Ads
-              never affect what we recommend in guides or comparisons. The{" "}
+              There is no paid plan, no watermark, and no account. The site
+              does not show ads. The{" "}
               <Link href="/privacy-policy" className={linkClassName}>
                 privacy policy
               </Link>{" "}
-              explains how ads use cookies and how to opt out of personalized
-              ads.
+              explains that editing stays in your browser.
             </p>
           </section>
 

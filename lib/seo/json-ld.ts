@@ -106,8 +106,8 @@ export function getSoftwareApplicationSchema() {
     operatingSystem: "Any (Web Browser)",
     softwareHelp: {
       "@type": "CreativeWork",
-      name: "Screenshot Studio API Documentation",
-      url: `${BASE_URL}/docs`,
+      name: "Screenshot Studio guides",
+      url: `${BASE_URL}/guides`,
     },
     offers: {
       "@type": "Offer",

@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { NewTwitterIcon } from "hugeicons-react";
 import { GitHubIcon } from "@/components/ui/github-star-button";
-import { AdSenseScript } from "@/components/AdSenseScript";
 import { TOOLS } from "@/lib/seo/tools";
 import { guides } from "@/lib/seo/guides";
 
@@ -14,15 +13,12 @@ const GITHUB_URL = "https://github.com/opennookorg/screenshot-studio";
 const X_URL = "https://x.com/screenshotstdio";
 const PEERLIST_URL =
   "https://peerlist.io/code_kartik/project/screenshot-studio";
-const PEERLIST_BADGE =
-  "https://dqy38fnwh4fqs.cloudfront.net/website/project-spotlight/project-week-rank-one-dark.svg";
 
 const navCol1 = [
   { href: "/editor", label: "Screenshot Editor" },
   { href: "/free-screenshot-editor", label: "Free editor" },
   { href: "/store-screenshots", label: "App store screenshots" },
   { href: "/code", label: "Code to image" },
-  { href: "/tweet", label: "Tweet to image" },
   { href: "/mockup-generator", label: "Mockup generator" },
   { href: "/remove-background", label: "Remove background" },
   { href: "/compress-video", label: "Compress video" },
@@ -38,8 +34,7 @@ const navCol2 = [
 
 const navCol3 = [
   { href: "/guides", label: "Guides" },
-  { href: "/docs", label: "API docs" },
-  { href: "/developers", label: "Developers" },
+  { href: "/for/developers", label: "For developers" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -80,7 +75,6 @@ export function Footer({ brandName = "Screenshot Studio" }: FooterProps) {
 
   return (
     <footer className="bg-background px-6 pb-8 pt-4 sm:pb-10">
-      <AdSenseScript />
       <div className="mx-auto max-w-6xl rounded-2xl bg-card px-6 py-12 ring-1 ring-border shadow-[var(--card-edge-shadow)] sm:px-8 sm:py-14">
         <div className="grid grid-cols-1 items-stretch gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
           <div className="flex h-full flex-col gap-6">
@@ -117,26 +111,17 @@ export function Footer({ brandName = "Screenshot Studio" }: FooterProps) {
                 href={PEERLIST_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex w-fit opacity-90 transition-opacity duration-150 hover:opacity-100"
+                className="text-sm text-foreground/80 underline-offset-4 hover:underline"
               >
-                <img
-                  src={PEERLIST_BADGE}
-                  alt="Peerlist Project Spotlight. Rank 1"
-                  className="h-10 w-auto"
-                />
+                Peerlist
               </a>
               <a
-                href="https://usefulshelf.co/apps/screenshot-studio?utm_source=screenshot-studio&utm_medium=referral&utm_campaign=badge&utm_content=lime"
+                href="https://usefulshelf.co/apps/screenshot-studio"
                 target="_blank"
                 rel="noopener"
+                className="text-sm text-foreground/80 underline-offset-4 hover:underline"
               >
-                <img
-                  src="https://usefulshelf.co/badge/screenshot-studio.svg?theme=lime"
-                  alt="Featured on UsefulShelf"
-                  width={248}
-                  height={66}
-                  className="h-10 w-auto"
-                />
+                UsefulShelf
               </a>
             </div>
           </div>

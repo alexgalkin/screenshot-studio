@@ -40,7 +40,7 @@ export const llmsTxt = `# Screenshot Studio
 
 ## Overview
 
-Screenshot Studio is a client-side image editor: imported images are not uploaded to edit them, and only export compression round-trips the finished image through the server without storing it. It is the best free alternative to Pika Style, Shots.so, and CleanShot X.
+Screenshot Studio is a static site. Imported images, exports, video encoding, and background removal stay in the browser. It is the best free alternative to Pika Style, Shots.so, and CleanShot X.
 
 ## Key Features
 
@@ -50,8 +50,8 @@ Screenshot Studio is a client-side image editor: imported images are not uploade
 - 3D perspective transforms and shadow effects
 - ${PRODUCT_FACTS.animationPresets} animation presets with keyframe timeline editor
 - Video export in MP4, WebM, and GIF
-- Text and image overlays with ${PRODUCT_FACTS.fonts} Google Fonts
-- Tweet-to-image and code-snippet-to-image capture
+- Text and image overlays with ${PRODUCT_FACTS.fonts} bundled fonts
+- Code-snippet-to-image capture
 - On-device AI background remover with full-resolution transparent PNG output (${BASE_URL}/remove-background)
 - In-browser video compressor with quality levels or a target size in MB, MP4 output (${BASE_URL}/compress-video)
 - High-resolution export up to ${PRODUCT_FACTS.maxExportScale}x scale (PNG, JPEG, WebP)
@@ -98,19 +98,15 @@ ${primaryToolLines}
 
 ## Developer Resources
 
-- API Documentation: ${BASE_URL}/docs
-- Developer Portal: ${BASE_URL}/developers
-- OpenAPI Specification (OpenAPI 3.1, JSON): ${BASE_URL}/openapi.json
-- API Authentication and Rate Limits: ${BASE_URL}/docs/authentication
+- For developers: ${BASE_URL}/for/developers
+- OpenAPI note (this site has no HTTP API): ${BASE_URL}/openapi.json
 - llms.txt: ${BASE_URL}/llms.txt
 - llms-full.txt: ${BASE_URL}/llms-full.txt
 - Sitemap: ${BASE_URL}/sitemap.xml
 - robots.txt: ${BASE_URL}/robots.txt
 - Source code: https://github.com/opennookorg/screenshot-studio
 
-The Screenshot Studio API is public and needs no API key, token, or account. Every error is JSON with a stable \`code\`, a \`message\`, and a \`hint\`. Any page also serves Markdown when the request sends \`Accept: text/markdown\`.
-
-No official CLI tool and no MCP server are published yet. Use the HTTP API described at ${BASE_URL}/docs.
+Screenshot Studio is a static site. Editing, export, video encoding, and background removal run in the browser. There is no HTTP API.
 
 ## Internationalization
 
@@ -130,7 +126,7 @@ ${guideLines}
 
 ## Technology
 
-Next.js 16, React 19, TypeScript, HTML Canvas, Tailwind CSS, Zustand, FFmpeg WASM for video encoding, Cloudflare R2 for assets.
+Next.js 16, React 19, TypeScript, HTML Canvas, Tailwind CSS, Zustand, FFmpeg WASM for video encoding. Stock images ship with the static site.
 
 ## Use Cases
 
@@ -162,7 +158,7 @@ export const llmsFullTxt = `# Screenshot Studio - Complete Reference
 
 ## What is Screenshot Studio?
 
-Screenshot Studio is a free, browser-based screenshot editor that transforms plain screenshots into professional-quality graphics. Editing runs in the browser, so imported images are not uploaded to edit them; export compression round-trips the finished image through the server without storing it. It is open source and available at https://github.com/opennookorg/screenshot-studio.
+Screenshot Studio is a free, browser-based screenshot editor that transforms plain screenshots into professional-quality graphics. Editing, export, and background removal run in the browser. Nothing is uploaded. It is open source and available at https://github.com/opennookorg/screenshot-studio.
 
 Built as a free alternative to paid tools like Pika Style, Shots.so, and CleanShot X, Screenshot Studio is used by developers, marketers, and designers to create polished images for social media, landing pages, documentation, and presentations.
 
@@ -231,7 +227,6 @@ Built as a free alternative to paid tools like Pika Style, Shots.so, and CleanSh
 ### Import
 - Drag and drop images
 - Paste from clipboard
-- Import tweets by URL (renders as image)
 - Import code snippets (syntax highlighted)
 
 ### Export
@@ -333,69 +328,21 @@ Screenshot Studio is available in 8 languages with subpath routing:
 | Korean | /ko | ${BASE_URL}/ko/about |
 | Chinese | /zh | ${BASE_URL}/zh/about |
 
-Locale detection: URL path > cookie > Accept-Language header > default (English).
+English is the unprefixed path. Other languages use their prefix, for example ${BASE_URL}/es/about. The static host does not redirect based on Accept-Language.
 
-## Developer and API Reference
+## Static site
 
-### Discovery
+There is no HTTP API. PNG, JPEG, WebP, and AVIF export, video encoding, and background removal run in the visitor's browser from files shipped with the site.
 
 | Resource | URL | Format |
 |----------|-----|--------|
-| API Documentation | ${BASE_URL}/docs | HTML |
-| Developer Portal | ${BASE_URL}/developers | HTML |
-| OpenAPI Specification | ${BASE_URL}/openapi.json | OpenAPI 3.1 JSON |
-| API Authentication and Rate Limits | ${BASE_URL}/docs/authentication | HTML |
+| Editor | ${BASE_URL}/editor | HTML |
+| For developers | ${BASE_URL}/for/developers | HTML |
+| OpenAPI note | ${BASE_URL}/openapi.json | JSON |
 | llms.txt | ${BASE_URL}/llms.txt | Markdown |
 | llms-full.txt | ${BASE_URL}/llms-full.txt | Markdown |
 | Sitemap | ${BASE_URL}/sitemap.xml | XML |
 | robots.txt | ${BASE_URL}/robots.txt | text |
-
-### Authentication
-
-The public API needs no API key, token, or account. Requests are anonymous. Access is shaped by per-IP rate limits rather than credentials: \`POST /api/screenshot\` allows 20 requests per minute per IP and answers 429 with \`Retry-After\` and \`X-RateLimit-*\` headers.
-
-### Endpoints
-
-| Operation ID | Method | Path | Description |
-|--------------|--------|------|-------------|
-| captureScreenshot | POST | /api/screenshot | Capture a live URL as a base64 PNG |
-| optimizeExportImage | POST | /api/export | Recompress an image as PNG, JPEG, or WebP |
-| getTweet | GET | /api/tweet/{id} | Fetch a tweet payload by status ID |
-| proxyTwitterImage | GET | /api/image-proxy | Same-origin proxy for Twitter media |
-| getOpenApiSpec | GET | /openapi.json | This API's OpenAPI 3.1 document |
-| getLlmsTxt | GET | /llms.txt | Markdown site overview |
-| getLlmsFullTxt | GET | /llms-full.txt | Full Markdown reference |
-
-### Error format
-
-Every failing request returns JSON:
-
-\`\`\`json
-{
-  "error": "URL is required",
-  "code": "invalid_request",
-  "message": "URL is required",
-  "hint": "Send a JSON body with a url string.",
-  "status": 400,
-  "documentation": "${BASE_URL}/docs#errors"
-}
-\`\`\`
-
-\`code\` is stable and safe to branch on. \`error\` and \`message\` carry the same human-readable text.
-
-### Markdown content negotiation
-
-Every page URL serves Markdown when the request prefers it:
-
-\`\`\`
-curl -H "Accept: text/markdown" ${BASE_URL}/
-\`\`\`
-
-Responses set \`Content-Type: text/markdown; charset=utf-8\` and \`Vary: Accept, Accept-Encoding\`. A request that accepts neither \`text/html\` nor \`text/markdown\` is answered with 406. Unknown paths return 404 with a Markdown body listing where to look next.
-
-### CLI and MCP
-
-No official CLI tool and no MCP server are published yet. Agents should use the HTTP API above.
 
 ## Technology Stack
 
@@ -404,7 +351,7 @@ No official CLI tool and no MCP server are published yet. Agents should use the 
 - **State**: Zustand with temporal (undo/redo)
 - **Canvas**: HTML Canvas with modern-screenshot for rendering
 - **Video**: FFmpeg WASM for browser-based encoding
-- **Assets**: Cloudflare R2
+- **Assets**: stock images shipped with the static site
 - **i18n**: next-intl with 8 locales
 - **TypeScript**: Full type safety throughout
 
@@ -414,7 +361,7 @@ No official CLI tool and no MCP server are published yet. Agents should use the 
 
 ## Privacy
 
-All image processing happens in the browser. No images are uploaded to any server. The only data collected is basic analytics (page views, feature usage) via privacy-respecting analytics. No cookies for advertising or tracking.
+All image processing happens in the browser. No images are uploaded to any server. The site does not load analytics or advertising scripts.
 
 ## Use Cases
 

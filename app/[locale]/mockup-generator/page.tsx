@@ -120,7 +120,7 @@ const faqs = [
   {
     question: "Is my screenshot uploaded to a server?",
     answer:
-      "No. Editing runs in your browser and imported images are not uploaded to edit them. Only export compression sends the finished image to the server, which recompresses it in memory and returns it without storing it.",
+      "No. Editing and export run in your browser. Imported images are not uploaded.",
   },
   {
     question: "Is there an iPad or Android mockup?",

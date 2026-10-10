@@ -126,8 +126,9 @@ export async function loadFFmpeg(
     const classWorkerURL = new URL(FFMPEG_CLASS_WORKER_PATH, window.location.origin).href;
 
     try {
+      const origin = window.location.origin;
       if (useMT) {
-        const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm';
+        const baseURL = `${origin}/ffmpeg/core-mt`;
         await ffmpeg.load({
           classWorkerURL,
           coreURL: await trackedBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
@@ -135,7 +136,7 @@ export async function loadFFmpeg(
           workerURL: await trackedBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript'),
         });
       } else {
-        const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
+        const baseURL = `${origin}/ffmpeg/core`;
         await ffmpeg.load({
           classWorkerURL,
           coreURL: await trackedBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),

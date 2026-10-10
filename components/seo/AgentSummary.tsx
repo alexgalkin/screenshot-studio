@@ -37,9 +37,7 @@ const AUDIENCE_PAGES = [
 ];
 
 const RESOURCE_LINKS = [
-  { href: "/docs", label: "API documentation" },
-  { href: "/docs/authentication", label: "API authentication and rate limits" },
-  { href: "/developers", label: "Developer portal" },
+  { href: "/for/developers", label: "For developers" },
   { href: "/changelog", label: "Changelog" },
   { href: "/about", label: "About Screenshot Studio" },
   { href: "/contact", label: "Contact" },
@@ -85,10 +83,8 @@ export function AgentSummary() {
         in your browser. Drop in a screenshot and turn it into a professional
         graphic: add a gradient background, wrap it in a Safari or Chrome browser
         mockup, tune the padding, corner radius, and shadow, tilt it in 3D, then
-        export {EXPORT_FORMATS_SENTENCE}. Editing runs on your device and
-        imported images are not uploaded to edit them; only export compression
-        sends the finished image to the server, which returns it without storing
-        it. There is no signup, no watermark, and no paid tier.
+        export {EXPORT_FORMATS_SENTENCE}. Editing and export run on your device.
+        Nothing is uploaded. There is no signup, no watermark, and no paid tier.
       </p>
 
       <div className="mt-10 grid gap-10">
@@ -122,7 +118,6 @@ export function AgentSummary() {
             items={[
               { href: "/free-screenshot-editor", label: "Free screenshot editor" },
               { href: "/code", label: "Code to image" },
-              { href: "/tweet", label: "Tweet to image" },
               { href: "/remove-background", label: "Background remover" },
               { href: "/compress-video", label: "Video compressor" },
               { href: "/store-screenshots", label: "App store screenshots" },

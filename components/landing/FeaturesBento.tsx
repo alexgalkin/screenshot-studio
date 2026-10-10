@@ -39,8 +39,8 @@ const FEATURE_CARDS: MagicBentoCard[] = [
     large: true,
   },
   {
-    title: "Tweet & Code Snippets",
-    description: "Paste a tweet URL or drop code.",
+    title: "Code Snippets",
+    description: "Paste code and export an image.",
     label: "Capture",
     visual: <CaptureVisual />,
   },

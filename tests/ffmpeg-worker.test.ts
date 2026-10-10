@@ -13,11 +13,14 @@ test("the served FFmpeg worker path matches the installed @ffmpeg/ffmpeg version
 
 test("the unbundled FFmpeg worker files are identical to the installed package", () => {
   // Upgrading @ffmpeg/ffmpeg without recopying would load a mismatched worker in production.
-  for (const file of ["worker.js", "const.js", "errors.js"]) {
+  for (const file of ["worker.js", "errors.js"]) {
     assert.equal(
       readFileSync(path.join(process.cwd(), "public/ffmpeg", version, file), "utf8"),
       readFileSync(path.join(PACKAGE_DIR, "dist/esm", file), "utf8"),
       `public/ffmpeg/${version}/${file} is out of date; copy it from node_modules/@ffmpeg/ffmpeg/dist/esm`,
     );
   }
+  const constants = readFileSync(path.join(process.cwd(), "public/ffmpeg", version, "const.js"), "utf8");
+  assert.equal(constants.includes("unpkg.com"), false);
+  assert.match(constants, /\/ffmpeg\/core\/ffmpeg-core\.js/);
 });

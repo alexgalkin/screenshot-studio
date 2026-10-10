@@ -1,13 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { CountUp } from "@/components/ui/CountUp";
 
 const REPO = "opennookorg/screenshot-studio";
-const CACHE_KEY = "gh-stars-v2";
-const CACHE_TTL = 5 * 60 * 1000;
 
 export function GitHubIcon({ className }: { className?: string }) {
   return (
@@ -28,88 +24,23 @@ export function GitHubIcon({ className }: { className?: string }) {
   );
 }
 
-function formatStarCount(count: number): string {
-  return Math.round(count).toLocaleString("en-US");
-}
-
-function useStarCount() {
-  const [stars, setStars] = useState<number | null>(null);
-
-  useEffect(() => {
-    try {
-      const cached = localStorage.getItem(CACHE_KEY);
-      if (cached) {
-        const { count, timestamp } = JSON.parse(cached);
-        if (Date.now() - timestamp < CACHE_TTL && count > 0) {
-          setStars(count);
-          return;
-        }
-      }
-    } catch {
-      setStars(null);
-    }
-
-    fetch(`https://api.github.com/repos/${REPO}`, {
-      headers: { Accept: "application/vnd.github.v3+json" },
-    })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data?.stargazers_count != null) {
-          const count = data.stargazers_count;
-          setStars(count);
-          try {
-            localStorage.setItem(
-              CACHE_KEY,
-              JSON.stringify({ count, timestamp: Date.now() }),
-            );
-          } catch {
-            return;
-          }
-        }
-      })
-      .catch(() => {});
-  }, []);
-
-  return stars;
-}
-
 export function GitHubStarButton({ compact }: { compact?: boolean }) {
-  const stars = useStarCount();
-
   return (
     <Link
       href={`https://github.com/${REPO}`}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={
-        stars != null && stars > 0
-          ? `GitHub repository, ${formatStarCount(stars)} stars`
-          : "GitHub repository"
-      }
+      aria-label="GitHub repository"
       className={cn(
-        "inline-flex items-center justify-center gap-1.5 rounded-md font-medium tabular-nums",
+        "inline-flex items-center justify-center gap-1.5 rounded-md font-medium",
         "text-foreground active:scale-[0.99]",
         "transition-[color,filter,text-shadow] duration-150",
         "hover:text-foreground hover:[text-shadow:0_0_12px_var(--nav-cta-glow)]",
         "hover:[&_svg]:text-foreground hover:[&_svg]:drop-shadow-[0_0_8px_var(--nav-cta-glow)]",
-        compact ? "h-9 px-2.5 text-sm" : "h-9 pl-2 pr-1.5 text-sm",
+        compact ? "h-9 px-2.5 text-sm" : "h-9 px-2.5 text-sm",
       )}
     >
-      <GitHubIcon
-        className={cn(
-          "size-[18px] shrink-0 text-foreground/60 transition-[color,filter] duration-150",
-        )}
-      />
-      {stars !== null && stars > 0 ? (
-        <CountUp
-          from={0}
-          to={stars}
-          direction="up"
-          duration={1.4}
-          delay={0}
-          format={formatStarCount}
-        />
-      ) : null}
+      <GitHubIcon className="size-[18px] shrink-0 text-foreground/60 transition-[color,filter] duration-150" />
     </Link>
   );
 }

@@ -17,7 +17,7 @@ import type { BackgroundSelection } from './code-backgrounds';
 import {
   CODE_THEMES,
   LANGUAGES,
-  GOOGLE_FONTS_URL,
+  CODE_FONTS_STYLESHEET,
   PADDING_OPTIONS,
   FRAME_WIDTH_MIN,
   FRAME_WIDTH_MAX,
@@ -41,7 +41,7 @@ import {
   type Shortcut,
 } from './EditorShell';
 
-const GOOGLE_FONTS_LINK_ID = 'code-image-google-fonts';
+const CODE_FONTS_LINK_ID = 'code-image-fonts';
 const HASH_WRITE_DELAY = 400;
 
 const ABOUT =
@@ -345,11 +345,11 @@ export function CodeImageEditor() {
   }, []);
 
   React.useEffect(() => {
-    if (!document.getElementById(GOOGLE_FONTS_LINK_ID)) {
+    if (!document.getElementById(CODE_FONTS_LINK_ID)) {
       const link = document.createElement('link');
-      link.id = GOOGLE_FONTS_LINK_ID;
+      link.id = CODE_FONTS_LINK_ID;
       link.rel = 'stylesheet';
-      link.href = GOOGLE_FONTS_URL;
+      link.href = CODE_FONTS_STYLESHEET;
       document.head.appendChild(link);
     }
 

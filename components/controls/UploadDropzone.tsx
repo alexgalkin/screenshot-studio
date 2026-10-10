@@ -6,9 +6,6 @@ import { Image01Icon } from "hugeicons-react";
 import { ALLOWED_IMAGE_TYPES, MAX_IMAGE_SIZE } from "@/lib/constants";
 import { useEditorStore, useImageStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { WebsiteScreenshotInput } from "./WebsiteScreenshotInput";
-
 export function UploadDropzone() {
   const [isDragActive, setIsDragActive] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -155,23 +152,7 @@ export function UploadDropzone() {
           </p>
         </div>
 
-        <Tabs defaultValue="upload" className="w-full">
-          <TabsList className="w-full grid grid-cols-2 rounded-none bg-transparent h-12 p-1.5 gap-1.5 border border-border">
-            <TabsTrigger
-              value="upload"
-              className="data-[state=active]:bg-background rounded-md border-0 data-[state=active]:border-2 data-[state=active]:border-border transition-all duration-200"
-            >
-              Upload Image
-            </TabsTrigger>
-            <TabsTrigger
-              value="screenshot"
-              className="data-[state=active]:bg-background rounded-md border-0 data-[state=active]:border-2 data-[state=active]:border-border transition-all duration-200"
-            >
-              Website Screenshot
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="upload" className="mt-6">
+        <div>
             <div
               {...getRootProps()}
               className={cn(
@@ -219,12 +200,7 @@ export function UploadDropzone() {
                 <p className="text-xs sm:text-sm text-destructive">{error}</p>
               </div>
             )}
-          </TabsContent>
-
-          <TabsContent value="screenshot" className="mt-6">
-            <WebsiteScreenshotInput />
-          </TabsContent>
-        </Tabs>
+        </div>
       </div>
     </div>
   );
