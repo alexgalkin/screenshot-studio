@@ -19,7 +19,7 @@ A free, open-source editor for screenshots, mockups, and social graphics. No sig
 
 ## Run locally
 
-Requires Node.js 20.9+ and npm.
+Requires Node.js 24 and npm.
 
 ```bash
 git clone https://github.com/opennookorg/screenshot-studio.git
